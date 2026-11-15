@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=4 uid="uid://blxjat2wl5hwt"]
+
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="1_w0h0a"]
+[ext_resource type="Script" uid="uid://clcv07gdpgsxo" path="res://Code/camera_2d.gd" id="2_m3ha0"]
+[ext_resource type="Texture2D" uid="uid://c5ei38w7n4a0w" path="res://Art/pixil-frame-0-6.png" id="3_vd23k"]
+[ext_resource type="Texture2D" uid="uid://damhfmii3gapr" path="res://Art/pixil-frame-0-14.png" id="4_x7rwe"]
+[ext_resource type="FontFile" uid="uid://cqqankfdnlg0n" path="res://Art/PixelifySans-VariableFont_wght.ttf" id="5_lf2mf"]
+[ext_resource type="PackedScene" uid="uid://b0aly4ak01qy3" path="res://flag.tscn" id="6_80cou"]
+[ext_resource type="PackedScene" uid="uid://c54q6fv0b3dt3" path="res://spikes.tscn" id="7_xosfc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mvtj7"]
+texture = ExtResource("3_vd23k")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/custom_data_0 = &"breakable"
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/custom_data_0 = &"slow"
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/custom_data_0 = &"bmagnet"
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0/custom_data_0 = &"Portal"
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0/custom_data_0 = &"rmagnet"
+2:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xlsm3"]
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "Block_type"
+custom_data_layer_0/type = 21
+sources/0 = SubResource("TileSetAtlasSource_mvtj7")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlsm3"]
+texture = ExtResource("4_x7rwe")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4nl3v"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_xlsm3")
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-855.0, -314.0]
+
+[node name="player" parent="." instance=ExtResource("1_w0h0a")]
+position = Vector2(-138, 67)
+
+[node name="Camera2D" type="Camera2D" parent="player" groups=["Camera"]]
+position = Vector2(138, -67)
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("2_m3ha0")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAD7//P/AAABAAAAAAD6//P/AAABAAAAAADk/wMAAAABAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAALAAAAAAABAAAAAAAKAAAAAAABAAAAAAABAPX/AAAAAAAAAAABAPT/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_xlsm3")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+rotation = 1.5707964
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAD5/wQAAAAAAAAAAAD5/wUAAAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAD5/wMAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wAAAAAAAAAAAAD5////AAAAAAAAAAD5//7/AAAAAAAAAAD5//3/AAAAAAAAAAD5/wYAAAAAAAAAAAD5/wcAAAAAAAAAAAD5/wgAAAAAAAAAAAD6/wgAAAAAAAAAAAD7/wgAAAAAAAAAAAD8/wgAAAAAAAAAAAD9/wgAAAAAAAAAAAD+/wgAAAAAAAAAAAD//wgAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAD5//z/AAABAAAAAAD6//v/AAABAAAAAAD7//v/AAABAAAAAAD8//r/AAABAAAAAAD9//n/AAABAAAAAAD+//j/AAABAAAAAAD///f/AAABAAAAAAAAAPb/AAABAAAAAAAEAPz/AAABAAAAAAAEAPv/AAABAAAAAAAEAPr/AAABAAAAAAAEAPn/AAABAAAAAAAEAPj/AAABAAAAAAAEAPf/AAABAAAAAAAEAPb/AAABAAAAAAAEAPX/AAABAAAAAAAEAPT/AAABAAAAAAAEAPP/AAABAAAAAAAEAPL/AAABAAAAAAAEAPH/AAABAAAAAAAEAPD/AAABAAAAAAAEAO//AAABAAAAAAAAAPP/AAAAAAAAAAAAAPL/AAAAAAAAAAAAAPH/AAAAAAAAAAAAAPD/AAAAAAAAAAAAAO//AAAAAAAAAAAAAO7/AAAAAAAAAAAAAO3/AAAAAAAAAAABAO3/AAAAAAAAAAACAO3/AAAAAAAAAAADAO3/AAAAAAAAAAAEAO3/AAAAAAAAAAAEAO7/AAAAAAAAAAD///b/AAABAAAAAAD+//b/AAABAAAAAAD9//b/AAABAAAAAAD8//b/AAABAAAAAAD7//b/AAABAAAAAAD6//b/AAABAAAAAAD5//b/AAABAAAAAAD///P/AAABAAAAAAD+//P/AAABAAAAAAD9//P/AAABAAAAAAD8//P/AAABAAAAAAD7//P/AAABAAAAAAD6//P/AAABAAAAAAD5//P/AAABAAAAAAD3//f/AAABAAAAAAD3//j/AAABAAAAAAD3//n/AAABAAAAAAD3//r/AAABAAAAAAD2//v/AAABAAAAAAD2//z/AAABAAAAAAD2//3/AAABAAAAAAD2//7/AAABAAAAAAD0//T/AAABAAAAAAD0//X/AAABAAAAAAD0//b/AAABAAAAAAD0//f/AAABAAAAAAD0//j/AAABAAAAAAD0//n/AAABAAAAAADz//r/AAABAAAAAADz//v/AAABAAAAAADz//z/AAABAAAAAADz//3/AAABAAAAAADz//7/AAABAAAAAAD4//P/AAABAAAAAAD3//P/AAABAAAAAAD2//P/AAABAAAAAAD1//P/AAABAAAAAAD0//P/AAABAAAAAAD4//f/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_4nl3v")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -171.0
+offset_top = -112.0
+offset_right = 86.0
+offset_bottom = -89.0
+theme_override_fonts/font = ExtResource("5_lf2mf")
+theme_override_font_sizes/font_size = 16
+text = "Taking Damage makes you faster"
+
+[node name="Node2D" parent="." instance=ExtResource("6_80cou")]
+position = Vector2(-3780, -316)
+
+[node name="Spikes13" parent="." instance=ExtResource("7_xosfc")]
+position = Vector2(-106, -169)
+rotation = 3.1415927
+
+[node name="Spikes14" parent="." instance=ExtResource("7_xosfc")]
+position = Vector2(449, 44)
+rotation = 3.1415927
+
+[node name="Spikes15" parent="." instance=ExtResource("7_xosfc")]
+position = Vector2(-1057, 117)
+
+[node name="Spikes16" parent="." instance=ExtResource("7_xosfc")]
+position = Vector2(-1103, 120)
+
+[node name="Spikes19" parent="." instance=ExtResource("7_xosfc")]
+position = Vector2(-943, -334)
+rotation = 3.1415927
+
+[node name="Spikes20" parent="." instance=ExtResource("7_xosfc")]
+position = Vector2(-1257, -207)
+
+[node name="Spikes12" parent="." instance=ExtResource("7_xosfc")]
+position = Vector2(-436, -344)
+rotation = 1.5707964
+
+[node name="Flag" parent="." instance=ExtResource("6_80cou")]
+position = Vector2(-1378, -835)

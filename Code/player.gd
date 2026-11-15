@@ -1,5 +1,5 @@
 extends RigidBody2D
-
+var last_contact_normal = Vector2.UP
 @export var max_launch_power = 1200
 @export var max_drag_dist = 200
 @export var min_drag_dist = 12.0
@@ -129,6 +129,7 @@ func on_body_entered(body: Node):
 			die()
 		else:
 			change_crack_level(1)
+			linear_velocity = last_contact_normal * 500.0
 			trigger_camera_shake(15.0)
 			can_take_damage = false
 			await get_tree().create_timer(0.4).timeout
@@ -172,21 +173,25 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 	var impact_speed: float = state.linear_velocity.length()
 	var touching: bool = state.get_contact_count() > 0
-	if touching and not was_touching and impact_speed > bounce_sfx_min_speed:
-		play_bounce_sfx(impact_speed)
+	var new_contact: bool = touching and not was_touching
 	was_touching = touching
-	if state.get_contact_count() > 0:
+
+	if touching:
+		last_contact_normal = state.get_contact_local_normal(0)
 		if Time.get_ticks_msec() - last_launch_ms > refill_grace * 1000.0:
 			air_charges = max_air_charges
 
 		var contact_pos: Vector2 = state.get_contact_collider_position(0)
 		var collider = state.get_contact_collider_object(0)
 
-		if impact_speed > 150.0:
+		if new_contact and impact_speed > bounce_sfx_min_speed:
+			play_bounce_sfx(impact_speed)
+
+		if new_contact and impact_speed > 150.0:
 			bounce_particles.global_position = contact_pos
 			bounce_particles.restart()
 
-		if impact_speed > 450.0:
+		if new_contact and impact_speed > 450.0:
 			var shake_amount: float = clamp((impact_speed - 700.0) / 50.0, 4.0, 20.0)
 			trigger_camera_shake(shake_amount)
 
@@ -206,7 +211,12 @@ func _apply_tile_effect(state: PhysicsDirectBodyState2D, block_type: String, til
 				tilemap.erase_cell(coords)
 				trigger_camera_shake(12.0)
 		"slow":
-			state.linear_velocity *= 0.3
+			if cracks_level > 0:
+				change_crack_level(-1)
+				tilemap.erase_cell(coords)
+				bounce_particles.global_position = tilemap.to_global(tilemap.map_to_local(coords))
+				bounce_particles.restart()
+				trigger_camera_shake(4.0)
 		"rmagnet":
 			var tile_pos: Vector2 = tilemap.to_global(tilemap.map_to_local(coords))
 			state.linear_velocity = (global_position - tile_pos).normalized() * 1200.0

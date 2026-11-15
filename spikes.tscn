@@ -6,6 +6,7 @@
 size = Vector2(20, 18.5)
 
 [node name="Spikes" type="StaticBody2D" groups=["Hazards"]]
+z_index = -2
 scale = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
