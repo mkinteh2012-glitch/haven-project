@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://b0aly4ak01qy3"]
+
+[ext_resource type="Script" uid="uid://cwjjjwycbuh0s" path="res://Code/flag.gd" id="1_amn8n"]
+[ext_resource type="Texture2D" uid="uid://rbpig4ywmxof" path="res://Art/New Piskel.png" id="1_l1sgl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7edy"]
+size = Vector2(8, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amn8n"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukulb"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_op6g7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amn8n")
+}],
+"loop": 2,
+"name": &"complete",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukulb")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Flag" type="Area2D" unique_id=600567808]
+scale = Vector2(4, 4)
+script = ExtResource("1_amn8n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1571770666]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_v7edy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=416857229]
+sprite_frames = SubResource("SpriteFrames_op6g7")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=430775468]
+emitting = false
+amount = 12
+explosiveness = 1.0
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
