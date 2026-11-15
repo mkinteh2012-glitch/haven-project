@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://crev2inf1u6xe"]
+[gd_scene load_steps=6 format=3 uid="uid://crev2inf1u6xe"]
+
+[ext_resource type="Texture2D" uid="uid://b11kwhd0fpcga" path="res://Art/pixil-frame-0-15.png" id="1_fu7sn"]
+[ext_resource type="Script" uid="uid://bqqnggp4nv32m" path="res://main_menu.gd" id="1_jix8l"]
+[ext_resource type="Texture2D" uid="uid://dl7ybj0sjov40" path="res://Art/pixil-frame-0-16.png" id="2_jix8l"]
+[ext_resource type="Texture2D" uid="uid://d3lm3dhpy6rl" path="res://Art/pixil-frame-0-17.png" id="3_glbon"]
+[ext_resource type="Texture2D" uid="uid://bagyy468cbtct" path="res://Art/pixil-frame-0-18.png" id="5_glbon"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +13,44 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jix8l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 291.0
+offset_right = 772.0
+offset_bottom = 605.0
+texture_normal = ExtResource("1_fu7sn")
+stretch_mode = 0
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 392.0
+offset_right = 502.0
+offset_bottom = 715.0
+texture_normal = ExtResource("2_jix8l")
+stretch_mode = 0
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 707.0
+offset_top = 353.0
+offset_right = 1083.0
+offset_bottom = 689.0
+texture_normal = ExtResource("3_glbon")
+stretch_mode = 0
+
+[node name="PixilFrame018" type="Sprite2D" parent="."]
+position = Vector2(577, 180.5)
+scale = Vector2(8.98, 7.6600003)
+texture = ExtResource("5_glbon")

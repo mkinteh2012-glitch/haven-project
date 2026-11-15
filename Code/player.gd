@@ -257,7 +257,7 @@ func fire_cannon(tilemap: TileMapLayer, coords: Vector2i) -> void:
 	trigger_camera_shake(14.0)
 	bounce_particles.global_position = global_position
 	bounce_particles.restart()
-	apply_central_impulse(fire_dir * 1800.0)
+	apply_central_impulse(fire_dir * 1400.0)
 
 	await get_tree().create_timer(0.08).timeout
 	collision_shape.set_deferred("disabled", false)

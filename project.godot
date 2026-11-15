@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="New Game Project"
-run/main_scene="uid://hnwp1vhpny63"
+run/main_scene="uid://crev2inf1u6xe"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [autoload]
@@ -40,3 +40,4 @@ slow={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.41692057, 0.31689563, 0.8363828, 1)
