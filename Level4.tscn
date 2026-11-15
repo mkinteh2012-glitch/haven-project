@@ -1,0 +1,182 @@
+[gd_scene format=4 uid="uid://b3cd7qm0ia0iy"]
+
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="1_0vw6x"]
+[ext_resource type="Script" uid="uid://clcv07gdpgsxo" path="res://Code/camera_2d.gd" id="2_cgold"]
+[ext_resource type="Texture2D" uid="uid://c5ei38w7n4a0w" path="res://Art/pixil-frame-0-6.png" id="3_evb8c"]
+[ext_resource type="Texture2D" uid="uid://damhfmii3gapr" path="res://Art/pixil-frame-0-14.png" id="4_yqqjl"]
+[ext_resource type="PackedScene" uid="uid://c54q6fv0b3dt3" path="res://spikes.tscn" id="5_cgold"]
+[ext_resource type="FontFile" uid="uid://cqqankfdnlg0n" path="res://Art/PixelifySans-VariableFont_wght.ttf" id="5_gkwbp"]
+[ext_resource type="PackedScene" uid="uid://b0aly4ak01qy3" path="res://flag.tscn" id="6_nj7ao"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mvtj7"]
+texture = ExtResource("3_evb8c")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/custom_data_0 = &"breakable"
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/custom_data_0 = &"slow"
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/custom_data_0 = &"bmagnet"
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0/custom_data_0 = &"Portal"
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0/custom_data_0 = &"rmagnet"
+2:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xlsm3"]
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "Block_type"
+custom_data_layer_0/type = 21
+sources/0 = SubResource("TileSetAtlasSource_mvtj7")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlsm3"]
+texture = ExtResource("4_yqqjl")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4nl3v"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_xlsm3")
+
+[node name="Node2D" type="Node2D" unique_id=1483139146]
+metadata/_edit_horizontal_guides_ = [-855.0]
+
+[node name="player" parent="." unique_id=1417837977 instance=ExtResource("1_0vw6x")]
+position = Vector2(-138, 67)
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=355324084 groups=["Camera"]]
+position = Vector2(138, -67)
+zoom = Vector2(2, 2)
+script = ExtResource("2_cgold")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1486416787]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAALABEAAAACAAAAAGALAAsAAAACAAAAAGAGAAgAAAACAAAAAFD1/xMAAAABAAAAAAD2/xMAAAABAAAAAADu/wMAAAACAAAAADDq/xMAAAACAAAAAFDq/w4AAAACAAAAAFDy/w0AAAACAAAAAGDy/wcAAAACAAAAAGD7/xYAAAAAAAAAAAD7/xUAAAAAAAAAAAD7/xQAAAAAAAAAAADX/wsAAAACAAAAAFDX/woAAAACAAAAAFDd/wgAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_xlsm3")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1582631653]
+rotation = 1.5707964
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAADAAUAAAAAAAAAAAADAAQAAAAAAAAAAAADAAMAAAAAAAAAAAADAAIAAAAAAAAAAAADAAYAAAAAAAAAAAACAAYAAAAAAAAAAAABAAYAAAAAAAAAAAAAAAYAAAAAAAAAAAD//wYAAAAAAAAAAAD//wUAAAAAAAAAAAD//wQAAAAAAAAAAAD//wMAAAAAAAAAAAADAAEAAAAAAAAAAAADAAAAAAAAAAAAAAADAP//AAAAAAAAAAADAP7/AAAAAAAAAAADAP3/AAAAAAAAAAADAPz/AAAAAAAAAAADAPv/AAAAAAAAAAADAPr/AAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD9/wAAAAAAAAAAAAD9////AAAAAAAAAAD9//7/AAAAAAAAAAD9//3/AAAAAAAAAAD9//z/AAAAAAAAAAD9//v/AAAAAAAAAAD9//r/AAAAAAAAAAD9//n/AAAAAAAAAAD9//j/AAAAAAAAAAD+//j/AAAAAAAAAAD+//f/AAAAAAAAAAD+//b/AAAAAAAAAAD+//X/AAAAAAAAAAD+//T/AAAAAAAAAAD+//P/AAAAAAAAAAD+//L/AAAAAAAAAAD+//H/AAAAAAAAAAD+//D/AAAAAAAAAAD///D/AAAAAAAAAAD//+//AAAAAAAAAAAAAO//AAAAAAAAAAABAO//AAAAAAAAAAACAO//AAAAAAAAAAADAPD/AAAAAAAAAAAEAPH/AAAAAAAAAAAFAPH/AAAAAAAAAAAFAPL/AAAAAAAAAAAGAPL/AAAAAAAAAAAGAPP/AAAAAAAAAAAHAPP/AAAAAAAAAAAEAPr/AAAAAAAAAAAEAPn/AAAAAAAAAAAFAPn/AAAAAAAAAAAGAPn/AAAAAAAAAAAHAPn/AAAAAAAAAAAHAPr/AAAAAAAAAAAIAPr/AAAAAAAAAAAJAPr/AAAAAAAAAAAKAPr/AAAAAAAAAAALAPr/AAAAAAAAAAAMAPr/AAAAAAAAAAAIAPP/AAAAAAAAAAAJAPP/AAAAAAAAAAAKAPP/AAAAAAAAAAALAPP/AAAAAAAAAAAMAPP/AAAAAAAAAAANAPr/AAAAAAAAAAAOAPr/AAAAAAAAAAAPAPr/AAAAAAAAAAAQAPr/AAAAAAAAAAANAPP/AAAAAAAAAAAOAPP/AAAAAAAAAAAPAPP/AAAAAAAAAAAQAPP/AAAAAAAAAAARAPP/AAAAAAAAAAASAPP/AAAAAAAAAAATAPP/AAAAAAAAAAAUAPP/AAAAAAAAAAAVAPP/AAAAAAAAAAAWAPP/AAAAAAAAAAAXAPT/AAAAAAAAAAAXAPX/AAAAAAAAAAAXAPP/AAAAAAAAAAAXAPb/AAAAAAAAAAAXAPf/AAAAAAAAAAAXAPj/AAAAAAAAAAAXAPn/AAAAAAAAAAAXAPr/AAAAAAAAAAAXAPv/AAAAAAAAAAAXAPz/AAAAAAAAAAAXAP3/AAAAAAAAAAAXAP7/AAAAAAAAAAAXAP//AAAAAAAAAAAXAAAAAAAAAAAAAAAXAAEAAAAAAAAAAAAXAAIAAAAAAAAAAAAXAAMAAAAAAAAAAAAXAAQAAAAAAAAAAAARAPr/AAAAAAAAAAARAPv/AAAAAAAAAAASAPz/AAAAAAAAAAATAP3/AAAAAAAAAAATAP7/AAAAAAAAAAATAP//AAAAAAAAAAATAAAAAAAAAAAAAAATAAEAAAAAAAAAAAATAAIAAAAAAAAAAAATAAMAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAYAAAAAAAAAAAAXAAcAAAAAAAAAAAAXAAgAAAAAAAAAAAAXAAkAAAAAAAAAAAATAAQAAAAAAAAAAAASAAUAAAAAAAAAAAASAAYAAAAAAAAAAAASAAcAAAAAAAAAAAASAAgAAAAAAAAAAAASAAkAAAAAAAAAAAASAAoAAAAAAAAAAAAXAAoAAAAAAAAAAAAXAAsAAAAAAAAAAAAXAAwAAAAAAAAAAAAXAA0AAAAAAAAAAAAXAA4AAAAAAAAAAAAXAA8AAAAAAAAAAAAXABAAAAAAAAAAAAAXABEAAAAAAAAAAAAXABIAAAAAAAAAAAAXABMAAAAAAAAAAAAXABQAAAAAAAAAAAAXABUAAAAAAAAAAAAWABUAAAAAAAAAAAAVABUAAAAAAAAAAAAUABUAAAAAAAAAAAASABUAAAAAAAAAAAARABUAAAAAAAAAAAAQABUAAAAAAAAAAAAPABUAAAAAAAAAAAANABUAAAAAAAAAAAAMABUAAAAAAAAAAAALABUAAAAAAAAAAAAKABUAAAAAAAAAAAAJABUAAAAAAAAAAAAIABUAAAAAAAAAAAASAAsAAAAAAAAAAAASAAwAAAAAAAAAAAASAA0AAAAAAAAAAAARAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAAMAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAFAA0AAAAAAAAAAAAEAA0AAAAAAAAAAAADAA4AAAAAAAAAAAADAA8AAAAAAAAAAAADABQAAAAAAAAAAAAIABYAAAAAAAAAAAAIABcAAAAAAAAAAAAIABgAAAAAAAAAAAAIABkAAAAAAAAAAAAIABoAAAAAAAAAAAADABUAAAAAAAAAAAADABYAAAAAAAAAAAADABcAAAAAAAAAAAADABgAAAAAAAAAAAADABkAAAAAAAAAAAADABoAAAAAAAAAAAADABsAAAAAAAAAAAADABwAAAAAAAAAAAADAB0AAAAAAAAAAAAIABsAAAAAAAAAAAAIABwAAAAAAAAAAAAIAB0AAAAAAAAAAAAIAB4AAAAAAAAAAAAIAB8AAAAAAAAAAAAIACAAAAAAAAAAAAAIACEAAAAAAAAAAAADAB4AAAAAAAAAAAADAB8AAAAAAAAAAAADACAAAAAAAAAAAAAJACIAAAAAAAAAAAAKACIAAAAAAAAAAAALACIAAAAAAAAAAAAMACIAAAAAAAAAAAANACIAAAAAAAAAAAAOACIAAAAAAAAAAAAPACMAAAAAAAAAAAAQACMAAAAAAAAAAAARACMAAAAAAAAAAAASACMAAAAAAAAAAAATACMAAAAAAAAAAAAUACQAAAAAAAAAAAAVACQAAAAAAAAAAAAWACQAAAAAAAAAAAADACEAAAAAAAAAAAADACIAAAAAAAAAAAADACMAAAAAAAAAAAADACQAAAAAAAAAAAAEACUAAAAAAAAAAAAFACYAAAAAAAAAAAAGACcAAAAAAAAAAAAHACgAAAAAAAAAAAAIACgAAAAAAAAAAAAJACgAAAAAAAAAAAAMACgAAAAAAAAAAAANACgAAAAAAAAAAAANACkAAAAAAAAAAAAOACkAAAAAAAAAAAAPACkAAAAAAAAAAAAQACkAAAAAAAAAAAARACkAAAAAAAAAAAASACkAAAAAAAAAAAATACkAAAAAAAAAAAAUACkAAAAAAAAAAAAVACkAAAAAAAAAAAAWACkAAAAAAAAAAAAXACkAAAAAAAAAAAAYACkAAAAAAAAAAAAXACQAAAAAAAAAAAAYACQAAAAAAAAAAAAZACQAAAAAAAAAAAAZACkAAAAAAAAAAAAZACgAAAAAAAAAAAAZACcAAAAAAAAAAAAZACYAAAAAAAAAAAAZACUAAAAAAAAAAAADABMAAAAAAAAAAAADABIAAAAAAAAAAAADABAAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_4nl3v")
+
+[node name="Spikes" parent="." unique_id=828633386 instance=ExtResource("5_cgold")]
+position = Vector2(368.00003, 720)
+rotation = -1.5879447
+scale = Vector2(2, 2.014597)
+
+[node name="Spikes3" parent="." unique_id=675963065 instance=ExtResource("5_cgold")]
+position = Vector2(-792.00006, 240)
+rotation = -0.0029788688
+scale = Vector2(2, 2.014597)
+
+[node name="Spikes7" parent="." unique_id=1657194321 instance=ExtResource("5_cgold")]
+position = Vector2(-864, 239.99998)
+rotation = -0.0029788688
+scale = Vector2(2, 2.014597)
+
+[node name="Spikes6" parent="." unique_id=1618148518 instance=ExtResource("5_cgold")]
+position = Vector2(-832, 240)
+rotation = -0.009004177
+scale = Vector2(2, 2.014597)
+
+[node name="Spikes4" parent="." unique_id=989995805 instance=ExtResource("5_cgold")]
+position = Vector2(112.00001, 624)
+rotation = -3.1475344
+scale = Vector2(2, 2.014597)
+
+[node name="Spikes5" parent="." unique_id=1393176681 instance=ExtResource("5_cgold")]
+position = Vector2(32, 656)
+rotation = -3.1475344
+scale = Vector2(2, 2.014597)
+
+[node name="Spikes9" parent="." unique_id=15303374 instance=ExtResource("5_cgold")]
+position = Vector2(72, 656.00006)
+rotation = -3.1475344
+scale = Vector2(2, 2.014597)
+
+[node name="Spikes2" parent="." unique_id=315467740 instance=ExtResource("5_cgold")]
+position = Vector2(-1128, 464)
+scale = Vector2(2, 2.014597)
+
+[node name="Spikes8" parent="." unique_id=10026699 instance=ExtResource("5_cgold")]
+position = Vector2(-1168, 143.99997)
+rotation = 2.2097125
+scale = Vector2(2, 2.014597)
+
+[node name="Label2" type="Label" parent="." unique_id=2089918943]
+offset_left = -640.0
+offset_top = 1024.0
+offset_right = -175.0
+offset_bottom = 1047.0
+theme_override_fonts/font = ExtResource("5_gkwbp")
+theme_override_font_sizes/font_size = 16
+text = "Going at max speed will free you from blue magnet"
+
+[node name="Label6" type="Label" parent="." unique_id=197193772]
+offset_left = -192.0
+offset_right = -84.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("5_gkwbp")
+theme_override_font_sizes/font_size = 16
+text = "*Short Level"
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="." unique_id=1202717406]
+offset_left = -1854.0
+offset_top = 736.0
+offset_right = -1787.0
+offset_bottom = 759.0
+theme_override_fonts/font = ExtResource("5_gkwbp")
+theme_override_font_sizes/font_size = 16
+text = "Up Up UP!"
+
+[node name="Label7" type="Label" parent="." unique_id=1344243431]
+offset_left = -1256.0
+offset_top = 840.0
+offset_right = -1175.0
+offset_bottom = 863.0
+theme_override_fonts/font = ExtResource("5_gkwbp")
+theme_override_font_sizes/font_size = 16
+text = ":D"
+
+[node name="Label5" type="Label" parent="." unique_id=1595503048]
+offset_left = -2426.0
+offset_top = -380.0
+offset_right = -2246.0
+offset_bottom = -357.0
+theme_override_fonts/font = ExtResource("5_gkwbp")
+theme_override_font_sizes/font_size = 16
+text = "Hold Spsce to slow down"
+
+[node name="Label3" type="Label" parent="." unique_id=537164692]
+offset_left = 192.0
+offset_top = 320.0
+offset_right = 434.0
+offset_bottom = 363.0
+theme_override_fonts/font = ExtResource("5_gkwbp")
+theme_override_font_sizes/font_size = 16
+text = "Blue Magnets Pull You In"
+autowrap_mode = 2
+
+[node name="Flag" parent="." unique_id=1559567980 instance=ExtResource("6_nj7ao")]
+position = Vector2(-1240, 776)
+
+[node name="Node2D" parent="." unique_id=478597908 instance=ExtResource("6_nj7ao")]
+position = Vector2(-3780, -316)
