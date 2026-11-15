@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c54q6fv0b3dt3"]
+
+[ext_resource type="Texture2D" uid="uid://om64axm8tkeu" path="res://Art/pixil-frame-0-2.png" id="1_s0g1x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrdsm"]
+size = Vector2(20, 18.5)
+
+[node name="Spikes" type="StaticBody2D" groups=["Hazards"]]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_s0g1x")
+region_enabled = true
+region_rect = Rect2(20.5, 46.18992, 26.104935, 20.885902)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.75)
+shape = SubResource("RectangleShape2D_nrdsm")

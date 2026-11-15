@@ -1,0 +1,125 @@
+[gd_scene load_steps=11 format=4 uid="uid://hnwp1vhpny63"]
+
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="1_hlpnd"]
+[ext_resource type="Script" uid="uid://clcv07gdpgsxo" path="res://Code/camera_2d.gd" id="2_73or5"]
+[ext_resource type="Texture2D" uid="uid://c5ei38w7n4a0w" path="res://Art/pixil-frame-0-6.png" id="3_jldhp"]
+[ext_resource type="PackedScene" uid="uid://c54q6fv0b3dt3" path="res://spikes.tscn" id="4_tyy4w"]
+[ext_resource type="Texture2D" uid="uid://damhfmii3gapr" path="res://Art/pixil-frame-0-14.png" id="5_swigd"]
+[ext_resource type="FontFile" uid="uid://cqqankfdnlg0n" path="res://Art/PixelifySans-VariableFont_wght.ttf" id="6_hp7xp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mvtj7"]
+texture = ExtResource("3_jldhp")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/custom_data_0 = &"breakable"
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/custom_data_0 = &"slow"
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/custom_data_0 = &"bmagnet"
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0/custom_data_0 = &"Portal"
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0/custom_data_0 = &"rmagnet"
+2:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xlsm3"]
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "Block_type"
+custom_data_layer_0/type = 21
+sources/0 = SubResource("TileSetAtlasSource_mvtj7")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlsm3"]
+texture = ExtResource("5_swigd")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_4nl3v"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_xlsm3")
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-855.0]
+
+[node name="player" parent="." instance=ExtResource("1_hlpnd")]
+position = Vector2(-138, 67)
+
+[node name="Camera2D" type="Camera2D" parent="player" groups=["Camera"]]
+position = Vector2(138, -67)
+zoom = Vector2(2, 2)
+script = ExtResource("2_73or5")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AADs/xcAAAAAAAAAAADs/xkAAAAAAAAAAADs/xgAAAAAAAAAAADR/xwAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_xlsm3")
+
+[node name="Spikes" parent="." instance=ExtResource("4_tyy4w")]
+z_index = -1
+position = Vector2(-952, 910)
+
+[node name="Spikes2" parent="." instance=ExtResource("4_tyy4w")]
+z_index = -1
+position = Vector2(-900, 910)
+
+[node name="Spikes3" parent="." instance=ExtResource("4_tyy4w")]
+z_index = -1
+position = Vector2(-852, 910)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+rotation = 1.5707964
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAD9/wkAAAABAAAAAAD+/wkAAAABAAAAAAD//wkAAAABAAAAAAAAAAkAAAABAAAAAAABAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAADAP3/AAABAAAAAAADAP7/AAABAAAAAAADAP//AAABAAAAAAADAAAAAAABAAAAAAADAAEAAAABAAAAAAADAAIAAAABAAAAAAADAAMAAAABAAAAAAADAAQAAAABAAAAAAADAAUAAAABAAAAAAADAAYAAAABAAAAAAADAAcAAAABAAAAAAADAAgAAAABAAAAAAD8//L/AAABAAAAAAD8//P/AAABAAAAAAD8//T/AAABAAAAAAD8//X/AAABAAAAAAD8//b/AAABAAAAAAD8//f/AAABAAAAAAD8//j/AAABAAAAAAD8//n/AAABAAAAAAD8//r/AAABAAAAAAD8//v/AAABAAAAAAD8//z/AAABAAAAAAD8//3/AAABAAAAAAD8//7/AAABAAAAAAD8////AAABAAAAAAD8/wAAAAABAAAAAAD8/wEAAAABAAAAAAD8/wIAAAABAAAAAAD8/wMAAAABAAAAAAD8/wQAAAABAAAAAAD8/wUAAAABAAAAAAD8/wYAAAABAAAAAAD8/wcAAAABAAAAAAD8/wgAAAABAAAAAAD8/wkAAAABAAAAAAADAPz/AAABAAAAAAAEAPz/AAABAAAAAAAFAPz/AAABAAAAAAD8/+z/AAABAAAAAAD8/+3/AAABAAAAAAD8/+7/AAABAAAAAAD8/+//AAABAAAAAAD8//D/AAABAAAAAAD8//H/AAABAAAAAAD9/+z/AAABAAAAAAD+/+z/AAABAAAAAAD//+z/AAABAAAAAAAAAOz/AAABAAAAAAABAOz/AAABAAAAAAACAOz/AAABAAAAAAADAOz/AAABAAAAAAAEAOz/AAABAAAAAAAFAOz/AAABAAAAAAAGAOz/AAABAAAAAAAHAOz/AAABAAAAAAAIAOz/AAABAAAAAAAJAOz/AAABAAAAAAAKAOz/AAABAAAAAAALAOz/AAABAAAAAAAGAPz/AAABAAAAAAAHAPz/AAABAAAAAAAIAPz/AAABAAAAAAAJAPz/AAABAAAAAAAKAPz/AAABAAAAAAALAPz/AAABAAAAAAAMAPz/AAABAAAAAAAMAOz/AAABAAAAAAANAO3/AAAAAAAAAAAOAO7/AAAAAAAAAAAOAO//AAAAAAAAAAAPAPD/AAAAAAAAAAAQAPH/AAAAAAAAAAAQAPL/AAAAAAAAAAARAPP/AAAAAAAAAAARAPT/AAAAAAAAAAARAPX/AAAAAAAAAAARAPb/AAAAAAAAAAARAPf/AAAAAAAAAAASAPj/AAAAAAAAAAASAPn/AAAAAAAAAAASAPr/AAAAAAAAAAAMAP3/AAAAAAAAAAANAP7/AAAAAAAAAAANAP//AAAAAAAAAAAOAAAAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAARAAYAAAAAAAAAAAATAPr/AAAAAAAAAAATAPv/AAAAAAAAAAAUAPz/AAAAAAAAAAAUAP3/AAAAAAAAAAAVAP7/AAAAAAAAAAAVAP//AAAAAAAAAAAVAAAAAAAAAAAAAAAWAAEAAAAAAAAAAAAWAAIAAAAAAAAAAAAXAAMAAAAAAAAAAAAXAAQAAAAAAAAAAAARAAcAAAAAAAAAAAARAAgAAAAAAAAAAAASAAkAAAAAAAAAAAASAAoAAAAAAAAAAAATAAsAAAAAAAAAAAATAAwAAAAAAAAAAAATAA0AAAAAAAAAAAAUAA4AAAAAAAAAAAAUAA8AAAAAAAAAAAAVABAAAAAAAAAAAAAVABEAAAAAAAAAAAAWABIAAAAAAAAAAAAWABMAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAYAAAAAAAAAAAAXAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAZAA0AAAAAAAAAAAAZAA4AAAAAAAAAAAAZAA8AAAAAAAAAAAAZABAAAAAAAAAAAAAaABEAAAAAAAAAAAAaABIAAAAAAAAAAAAaABMAAAAAAAAAAAAaABQAAAAAAAAAAAAbABUAAAAAAAAAAAAbABYAAAAAAAAAAAAcABcAAAAAAAAAAAAdABgAAAAAAAAAAAAWABQAAAAAAAAAAAAWABUAAAAAAAAAAAAWABYAAAAAAAAAAAAWABcAAAAAAAAAAAAWABgAAAAAAAAAAAAWABkAAAAAAAAAAAAWABoAAAAAAAAAAAAWABsAAAAAAAAAAAAWABwAAAAAAAAAAAAWAB0AAAAAAAAAAAAdABkAAAAAAAAAAAAdABoAAAAAAAAAAAAdABsAAAAAAAAAAAAdABwAAAAAAAAAAAAdAB0AAAAAAAAAAAAdAB4AAAAAAAAAAAAdAB8AAAAAAAAAAAAdACAAAAAAAAAAAAAWAB4AAAAAAAAAAAAXAB8AAAAAAAAAAAAYACAAAAAAAAAAAAAYACEAAAAAAAAAAAAZACIAAAAAAAAAAAAaACMAAAAAAAAAAAAdACEAAAAAAAAAAAAdACIAAAAAAAAAAAAdACMAAAAAAAAAAAAdACQAAAAAAAAAAAAaACQAAAAAAAAAAAAdACUAAAAAAAAAAAAdACYAAAAAAAAAAAAdACcAAAAAAAAAAAAdACgAAAAAAAAAAAAbACoAAAAAAAAAAAAbACsAAAAAAAAAAAAbACwAAAAAAAAAAAAbAC0AAAAAAAAAAAAdACoAAAAAAAAAAAAdACkAAAAAAAAAAAAdACsAAAAAAAAAAAAdACwAAAAAAAAAAAAdAC0AAAAAAAAAAAAdAC4AAAAAAAAAAAAbAC4AAAAAAAAAAAAaACUAAAAAAAAAAAAaACYAAAAAAAAAAAAaACcAAAAAAAAAAAAaACgAAAAAAAAAAAAaACkAAAAAAAAAAAATABYAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_4nl3v")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -413.0
+offset_top = 680.0
+offset_right = -169.0
+offset_bottom = 703.0
+theme_override_fonts/font = ExtResource("6_hp7xp")
+theme_override_font_sizes/font_size = 16
+text = "Hit these blocks to break them"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -245.0
+offset_top = -57.0
+offset_right = -28.0
+offset_bottom = -34.0
+theme_override_fonts/font = ExtResource("6_hp7xp")
+theme_override_font_sizes/font_size = 16
+text = "Time will slow down when you aim!"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = -244.0
+offset_top = -36.0
+offset_right = 4.0
+offset_bottom = -13.0
+theme_override_fonts/font = ExtResource("6_hp7xp")
+theme_override_font_sizes/font_size = 16
+text = "Move using your mouse!"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = -1017.0
+offset_top = 780.0
+offset_right = -680.0
+offset_bottom = 823.0
+theme_override_fonts/font = ExtResource("6_hp7xp")
+theme_override_font_sizes/font_size = 16
+text = "Touching spikes will make you take damage buy you'll become smaller and faster!"
+autowrap_mode = 2
