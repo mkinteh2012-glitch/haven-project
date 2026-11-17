@@ -15,8 +15,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="New Game Project"
+<<<<<<< HEAD
 run/main_scene="uid://crev2inf1u6xe"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+=======
+run/main_scene="uid://hnwp1vhpny63"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+>>>>>>> 4c400f5b6155d319d800fa8b36151c6c7d05d348
 
 [autoload]
 
